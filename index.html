@@ -1,13 +1,60 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fed25d-js-inl-2-budget-app-filip-brandt</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fed25d-js-inl-2-budget-app-filip-brandt</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>My Budget</h1>
+
+    <section class="balance-section">
+      <h2>Actual balance:</h2>
+      <p class="balance-display">
+        <span id="balanceAmount">0</span> SEK
+      </p>
+    </section>
+
+    <section class="income-section">
+      <h3>Add income</h3>
+      <form id="incomeForm">
+        <input type="number" id="incomeAmount" placeholder="Amount in SEK" required />
+        <input type="text" id="incomeDescription" placeholder="Description" required />
+        <select id="incomeCategory" required>
+          <option value=" ">Choose category</option>
+        </select>
+        <button type="submit">Add Income</button>
+      </form>
+    </section>
+
+    <section class="expense-section">
+      <h3>Add expense</h3>
+      <form id="expenseForm">
+        <input type="number" id="expenseAmount" placeholder="Amount in SEK" required />
+        <input type="text" id="expenseDescription" placeholder="Description" required />
+        <select id="expenseCategory" required>
+          <option value=" ">Choose category</option>
+        </select>
+        <button type="submit">Add Expense</button>
+      </form>
+
+      <section class="lists-section">
+        <h3>Transactions</h3>
+        <article class="transaction-group">
+          <ul id="incomeList"></ul>
+        </article>
+
+        <article class="transaction-group">
+          <ul id="expenseList"></ul>
+        </article>
+      </section>
+
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
