@@ -22,24 +22,24 @@
     <section class="income-section">
       <h3>Add income</h3>
       <form id="incomeForm">
-        <input type="number" id="incomeAmount" placeholder="Amount in SEK" required />
+        <input type="number" id="incomeAmount" placeholder="Amount in SEK" min="1" required />
         <input type="text" id="incomeDescription" placeholder="Description" required />
         <select id="incomeCategory" required>
           <option value=" ">Choose category</option>
         </select>
-        <button type="submit">Add Income</button>
+        <button type="submit">Add</button>
       </form>
     </section>
 
     <section class="expense-section">
       <h3>Add expense</h3>
       <form id="expenseForm">
-        <input type="number" id="expenseAmount" placeholder="Amount in SEK" required />
+        <input type="number" id="expenseAmount" placeholder="Amount in SEK" min="1" required />
         <input type="text" id="expenseDescription" placeholder="Description" required />
         <select id="expenseCategory" required>
           <option value=" ">Choose category</option>
         </select>
-        <button type="submit">Add Expense</button>
+        <button type="submit">Add</button>
       </form>
 
       <section class="lists-section">
