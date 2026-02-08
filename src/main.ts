@@ -25,14 +25,27 @@ const expenseList = document.getElementById('expenseList')
 
 // Retrieve categories from JSON file
 async function loadCategories() {
-    const response = await fetch('/categories.json');
-    const data = await response.json();
-    categories = data;
-    populateCategorySelects();
+    try {
+        const response = await fetch(`${import.meta.env.BASE_URL}data/categories.json`);
+        console.log('Fetch URL:', response.url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Loaded categories:', data);
+        categories = data;
+        populateCategorySelects();
+    } catch (error) {
+        console.error('Failed to load categories:', error);
+    }
 }
 
 // Fill dropdown selects with categories
 function populateCategorySelects() {
+    console.log('Populating categories...', categories);
+    console.log('incomeCategory element:', incomeCategory);
+    console.log('expenseCategory element:', expenseCategory);
+    
     incomeCategory.innerHTML = '<option value="">Choose category</option>';
     expenseCategory.innerHTML = '<option value="">Choose category</option>';
 
@@ -187,8 +200,9 @@ function renderEntries() {
 
     budgetEntries.forEach(entry => {
         const li = document.createElement('li');
+        const typeLabel = entry.type === 'income' ? 'Income' : 'Expense';
         li.innerHTML = `
-        ${entry.description} - ${entry.amount} (${entry.category})
+        <label>${typeLabel}:</label> ${entry.description} - ${entry.amount} (${entry.category})
         <button class="delete-button" data-id="${entry.id}">Delete</button>`;
 
         if (entry.type === 'income') {
@@ -223,8 +237,8 @@ function deleteEntry(entryId) {
 
 // Initialize page by loading categories and existing entries from localStorage
 
-function init() {
-    loadCategories();
+async function init() {
+    await loadCategories();
     loadFromLocalStorage();
 }
 
