@@ -5,12 +5,16 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="A simple budget app built with JavaScript, HTML, and CSS. Track your income and expenses to manage your finances effectively." />
   <title>fed25d-js-inl-2-budget-app-filip-brandt</title>
 </head>
 
 <body>
-  <div id="app">
-    <h1>My Budget</h1>
+  <main id="app" role="main">
+    <header>
+      <h1>My Budget</h1>
+    </header>
 
     <section class="balance-section">
       <h2>Actual balance:</h2>
@@ -22,38 +26,43 @@
     <section class="income-section">
       <h3>Add income</h3>
       <form id="incomeForm">
-        <input type="number" id="incomeAmount" placeholder="Amount in SEK" min="1" required />
-        <input type="text" id="incomeDescription" placeholder="Description" required />
-        <select id="incomeCategory" required>
+        <input type="number" id="incomeAmount" placeholder="Amount in SEK" min="1" aria-label="Income amount in SEK"
+          required />
+        <input type="text" id="incomeDescription" placeholder="Description" aria-label="Income description" required />
+        <select id="incomeCategory" aria-label="Income category" required>
           <option value=" ">Choose category</option>
         </select>
-        <button type="submit">Add</button>
+        <button type="submit" aria-label="Add income entry">Add</button>
       </form>
     </section>
 
     <section class="expense-section">
       <h3>Add expense</h3>
       <form id="expenseForm">
-        <input type="number" id="expenseAmount" placeholder="Amount in SEK" min="1" required />
-        <input type="text" id="expenseDescription" placeholder="Description" required />
-        <select id="expenseCategory" required>
+        <input type="number" id="expenseAmount" placeholder="Amount in SEK" min="1" aria-label="Expense amount in SEK"
+          required />
+        <input type="text" id="expenseDescription" placeholder="Description" aria-label="Expense description"
+          required />
+        <select id="expenseCategory" aria-label="Expense category" required>
           <option value=" ">Choose category</option>
         </select>
-        <button type="submit">Add</button>
+        <button type="submit" aria-label="Add expense entry">Add</button>
       </form>
 
       <section class="lists-section">
         <h3>Transactions</h3>
         <article class="transaction-group">
-          <ul id="incomeList"></ul>
+          <h4>Income history</h4>
+          <ul id="incomeList" role="list" aria-label="List of income entries"></ul>
         </article>
 
         <article class="transaction-group">
-          <ul id="expenseList"></ul>
+          <h4>Expense history</h4>
+          <ul id="expenseList" role="list" aria-label="List of expense entries"></ul>
         </article>
       </section>
 
-  </div>
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
