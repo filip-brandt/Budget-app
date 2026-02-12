@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: '/fed25d-js-inl-2-budget-app-filip-brandt/',
+  base: "/fed25d-js-inl-2-budget-app-filip-brandt/",
 });
