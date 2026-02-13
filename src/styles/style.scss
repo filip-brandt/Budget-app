@@ -107,7 +107,7 @@ li {
 // Delete button styling
 .delete-button {
   padding: 5px 15px;
-  background-color: #f44336;
+  background-color: #E91B0C;
   color: white;
   border: none;
   border-radius: 4px;
@@ -116,7 +116,22 @@ li {
 }
 
 .delete-button:hover {
-  background-color: #da190b;
+  background-color: #D0180B;
+}
+
+.reset-button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #E91B0C;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  &:hover {
+    background-color: #D0180B;
+  }
 }
 
 // Section headings
