@@ -21,11 +21,11 @@ const expenseAmount = document.getElementById("expenseAmount") as HTMLInputEleme
 const expenseDescription = document.getElementById("expenseDescription") as HTMLInputElement;
 const expenseCategory = document.getElementById("expenseCategory") as HTMLSelectElement;
 const expenseList = document.getElementById("expenseList") as HTMLUListElement;
+const resetBtn = document.getElementById("resetBtn") as HTMLButtonElement;
 
 // functions to add categories to dropdown selects -------------------------------------------------------------
-
 // Retrieve categories from JSON file
-async function loadCategories() {
+async function loadCategories(): Promise<void> {
   try {
     const response = await fetch(`${import.meta.env.BASE_URL}data/categories.json`);
     console.log("Fetch URL:", response.url);
@@ -42,7 +42,7 @@ async function loadCategories() {
 }
 
 // Fill dropdown selects with categories
-function populateCategorySelects() {
+function populateCategorySelects(): void {
   console.log("Populating categories...", categories);
   console.log("incomeCategory element:", incomeCategory);
   console.log("expenseCategory element:", expenseCategory);
@@ -93,14 +93,14 @@ function saveIncomeEntry(entry: IBudgetEntry): void {
   saveToLocalStorage();
 }
 
-function resetIncomeForm() {
+function resetIncomeForm(): void {
   incomeAmount.value = "";
   incomeDescription.value = "";
   incomeCategory.value = "";
 }
 
 // update balance and entry lists in the UI
-function updateUI() {
+function updateUI(): void {
   renderEntries();
   updateBalance();
 }
@@ -134,7 +134,7 @@ function saveExpenseEntry(entry: IBudgetEntry): void {
   saveToLocalStorage();
 }
 
-function resetExpenseForm() {
+function resetExpenseForm(): void {
   expenseAmount.value = "";
   expenseDescription.value = "";
   expenseCategory.value = "";
@@ -143,14 +143,14 @@ function resetExpenseForm() {
 expenseForm.addEventListener("submit", handleExpenseSubmit);
 
 // store budget entries in localStorage as stringified array to persist data across page reloads
-function saveToLocalStorage() {
+function saveToLocalStorage(): void {
   const stringifiedEntries = JSON.stringify(budgetEntries);
   localStorage.setItem("budgetEntries", stringifiedEntries);
 }
 
 // functions to render balance and entry lists --------------------------------------------------------------
 // Load budget entries from localStorage on page load
-function loadFromLocalStorage() {
+function loadFromLocalStorage(): void {
   const stored = localStorage.getItem("budgetEntries");
 
   if (stored === null || stored === "") {
@@ -167,7 +167,7 @@ function loadFromLocalStorage() {
 }
 
 // Calculate and update the balance display based on current budget entries
-function updateBalance() {
+function updateBalance(): void {
   const totalIncome = budgetEntries.reduce((sum, entry) => {
     if (entry.type === "income") {
       return sum + entry.amount;
@@ -197,7 +197,7 @@ function updateBalance() {
 }
 
 // Render income and expense entries in their respective lists
-function renderEntries() {
+function renderEntries(): void {
   incomeList.innerHTML = "";
   expenseList.innerHTML = "";
 
@@ -219,7 +219,7 @@ function renderEntries() {
 }
 
 // Attach event listeners to delete buttons for each entry
-function attachDeleteHandlers() {
+function attachDeleteHandlers(): void {
   const deleteButtons = document.querySelectorAll(".delete-button") as NodeListOf<HTMLButtonElement>;
   deleteButtons.forEach((button) => {
     button.addEventListener("click", handleDeleteEntry);
@@ -235,15 +235,25 @@ function handleDeleteEntry(event: MouseEvent): void {
   }
 }
 
+// Delete entry from array and update localStorage and UI
 function deleteEntry(entryId: string): void {
   budgetEntries = budgetEntries.filter((entry) => entry.id !== entryId);
   saveToLocalStorage();
   updateUI();
 }
 
-// Initialize page by loading categories and existing entries from localStorage
+// Reset the app
+function resetApp(): void {
+  if (confirm("Are you sure you want to reset the app? This will delete all entries.")) {
+    budgetEntries = [];
+    saveToLocalStorage();
+    updateUI();
+  }
+}
+resetBtn.addEventListener("click", resetApp);
 
-async function init() {
+// Initialize page by loading categories and existing entries from localStorage
+async function init(): Promise<void> {
   await loadCategories();
   loadFromLocalStorage();
 }
