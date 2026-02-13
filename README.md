@@ -1,6 +1,6 @@
 <img width="1701" height="946" alt="bild" src="https://github.com/user-attachments/assets/42741a86-839f-445e-aa1e-a2c5c5cc230d" />  
 
-Page: 
+Page: https://medieinstitutet.github.io/fed25d-js-inl-2-budget-app-filip-brandt/  
 
 Made by: Filip Brandt  
 
