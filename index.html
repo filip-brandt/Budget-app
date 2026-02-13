@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="A simple budget app built with JavaScript, HTML, and CSS. Track your income and expenses to manage your finances effectively." />
-  <title>fed25d-js-inl-2-budget-app-filip-brandt</title>
+  <title>Budget App</title>
 </head>
 
 <body>
-  <main id="app" role="main">
+  <main id="app">
     <header>
       <h1>My Budget</h1>
     </header>
@@ -31,7 +31,7 @@
           required />
         <input type="text" id="incomeDescription" placeholder="Description" aria-label="Income description" required />
         <select id="incomeCategory" aria-label="Income category" required>
-          <option value=" ">Choose category</option>
+          <option value="">Choose category</option>
         </select>
         <button type="submit" aria-label="Add income entry">Add</button>
       </form>
@@ -45,23 +45,24 @@
         <input type="text" id="expenseDescription" placeholder="Description" aria-label="Expense description"
           required />
         <select id="expenseCategory" aria-label="Expense category" required>
-          <option value=" ">Choose category</option>
+          <option value="">Choose category</option>
         </select>
         <button type="submit" aria-label="Add expense entry">Add</button>
       </form>
+    </section>
 
-      <section class="lists-section">
-        <h3>Transactions</h3>
-        <article class="transaction-group">
-          <h4>Income history</h4>
-          <ul id="incomeList" role="list" aria-label="List of income entries"></ul>
-        </article>
+    <section class="lists-section">
+      <h3>Transactions</h3>
+      <article class="transaction-group">
+        <h4>Income history</h4>
+        <ul id="incomeList" aria-label="List of income entries"></ul>
+      </article>
 
-        <article class="transaction-group">
-          <h4>Expense history</h4>
-          <ul id="expenseList" role="list" aria-label="List of expense entries"></ul>
-        </article>
-      </section>
+      <article class="transaction-group">
+        <h4>Expense history</h4>
+        <ul id="expenseList" aria-label="List of expense entries"></ul>
+      </article>
+    </section>
 
   </main>
   <script type="module" src="/src/main.ts"></script>
